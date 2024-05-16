@@ -60,12 +60,13 @@ class BaseModel:
 if __name__ == "__main__":
     c1 = BaseModel()
     c2 = BaseModel()
-    c3 = BaseModel()
-    c4 = BaseModel()
-    c5 = BaseModel()
-    c6 = BaseModel()
-    c7 = BaseModel()
-    c8 = BaseModel()
-    print(c1.id)
-    print(c2.id)
-    print(c3.id)
+    # test one
+    print(isinstance(c1.id,str))
+    # test two
+    print(isinstance(c1.created_at,dt))
+    print(type(c1.created_at))
+    print(50 * "#")
+    print(c1.updated_at)
+    c1.save()
+    print(c1.updated_at)
+    
