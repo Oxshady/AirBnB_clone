@@ -17,9 +17,11 @@ instance attributeupdated_at with the current datetime
 to_dict(self): returns a dictionary
 containing all keys/values of __dict__ of the instance:
 """
+
 import uuid
 from datetime import datetime as dt
 from models import storage
+
 
 class BaseModel:
     """
@@ -33,7 +35,8 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    setattr(self, key, dt.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    setattr(self, key,
+                            dt.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 elif key != "__class__":
                     setattr(self, key, value)
         else:
@@ -48,6 +51,11 @@ class BaseModel:
         return f"[{self.__class__.__name__}] ({self.id}) {self.to_dict()}"
 
     def save(self):
+        """
+        The `save` function updates the `updated_at` attribute,
+        adds the object to storage, and saves the
+        storage.
+        """
         self.updated_at = dt.now()
         storage.new(self)
         storage.save()
