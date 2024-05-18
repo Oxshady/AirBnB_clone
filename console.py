@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import shlex
 import cmd as cmd_hbnb
 from sys import stdin
 from models.base_model import BaseModel as B_S
@@ -31,7 +32,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
         created.save()
         print(created.id)
     def do_show(self, arg):
-        args = arg.split()
+        args = shlex.split(arg)
         if not args:
             print("** class name missing **")
             return
@@ -50,7 +51,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
             tmp = B_S(**(objects[s]))
             print(tmp.__str__())
     def do_destroy(self, arg):
-        args = arg.split()
+        args = shlex.split(arg)
         if not args:
             print("** class name missing **")
             return
