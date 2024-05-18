@@ -9,7 +9,7 @@ classes = {
 }
 class HBNBCommand(cmd_hbnb.Cmd):
     prompt = "(hbnb)"
-
+    st.reload()
     def do_EOF(self, line):
         return True
 
@@ -86,6 +86,35 @@ class HBNBCommand(cmd_hbnb.Cmd):
                     tmp.append(B_S(**objects[key]).__str__())
             if tmp:
                 print(tmp)
+    def do_update(self,arg):
+        args = shlex.split(arg)
+        lenght = len(args)
+        if not lenght:
+            print("** class name missing **")
+            return
+        if args[0] not in classes:
+            print("class dosen't exist")
+            return
+        if lenght < 2:
+            print("** instance id missing **")
+            return
+        objects = st.all()
+        c_id = ".".join([args[0],args[1]])
+        if objects.get(c_id) is not None:
+            print(objects.get(c_id))
+            if lenght < 3:
+                print("** attribute name missing **")
+                return
+            if lenght < 4:
+                print("** value missing **")
+                return
+            if args[3] in ["updated_at","created_at","id"]:
+                return
+            ob = B_S(**objects[c_id])
+            setattr(ob,args[2],args[3])
+            objects[c_id] = ob.to_dict()
+            st.save()
+            print(objects.get(c_id))
                 
 if __name__ == "__main__":
     if stdin.isatty():
