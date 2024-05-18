@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 The `FileStorage` class provides methods
 for storing and managing objects in a JSON file."""

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """The `User` class inherits attributes from
 `BaseModel` and defines email, password, first name, and
 last name attributes for a user."""

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """BaseModel
 -  defines all common attributes/methods for other classes:
 Public instance attributes:

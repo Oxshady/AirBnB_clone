@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """The class Amenity inherits from the BaseModel
 class and has a property "name" initialized as an
 empty string."""

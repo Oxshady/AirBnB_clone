@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """The Review class inherits attributes from
 the BaseModel class and defines attributes for a review
 object such as place_id, user_id, and text."""
