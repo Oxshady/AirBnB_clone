@@ -5,9 +5,19 @@ from sys import stdin
 from models.base_model import BaseModel as B_S
 from models import storage as st
 from models.user import User as uS
+from models.amenity import Amenity as A
+from models.city import City as cCc
+from models.state import State as s_s
+from models.review import Review as RrR
+from models.place import Place as PpP
 classes = {
 	"BaseModel": B_S
     ,"User": uS
+    ,"Amenity": A
+    ,"City": cCc
+    ,"State": s_s
+    ,"Review": RrR
+    ,"Place": PpP
 }
 class HBNBCommand(cmd_hbnb.Cmd):
     prompt = "(hbnb)"
