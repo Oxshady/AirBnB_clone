@@ -68,13 +68,23 @@ class HBNBCommand(cmd_hbnb.Cmd):
         del objects[s]
         st.save()
     def do_all(self, arg):
+        objects = st.all()
         if not arg:
-            objects = st.all()
             tmp = list()
             for key in objects:
                 tmp.append(B_S(**objects[key]).__str__())
             print(tmp)
-            
+        else:
+            if arg not in classes:
+                print("** class doesn't exist **")
+                return
+            tmp = list()
+            for key in objects:
+                a = key.split(".")
+                if a[0] == arg:
+                    tmp.append(B_S(**objects[key]).__str__())
+            if tmp:
+                print(tmp)
                 
 if __name__ == "__main__":
     if stdin.isatty():

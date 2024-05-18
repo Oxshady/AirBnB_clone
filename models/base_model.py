@@ -18,7 +18,6 @@ to_dict(self): returns a dictionary
 containing all keys/values of __dict__ of the instance:
 """
 import uuid
-from json import dumps
 from datetime import datetime as dt
 from models import storage
 

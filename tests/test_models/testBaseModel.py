@@ -36,7 +36,7 @@ class TestEmployee(TC):
         self.assertIsInstance(self.base1.created_at, d)
         self.assertIsNotNone(self.base1.created_at)
 
-    def test_createdAt(self):
+    def test_updateddAt(self):
         self.assertIsInstance(self.base1.updated_at, d)
         self.assertIsNotNone(self.base1.updated_at)
 
