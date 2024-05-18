@@ -40,16 +40,16 @@ class BaseModel:
             self.id = (uuid.uuid4()).hex
             self.created_at = dt.now()
             self.updated_at = dt.now()
-            storage.new(self)
 
     def __str__(self) -> str:
         """
         string representation of instance
         """
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.to_dict()}"
 
     def save(self):
         self.updated_at = dt.now()
+        storage.new(self)
         storage.save()
 
     def to_dict(self):

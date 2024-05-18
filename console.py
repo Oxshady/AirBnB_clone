@@ -4,8 +4,10 @@ import cmd as cmd_hbnb
 from sys import stdin
 from models.base_model import BaseModel as B_S
 from models import storage as st
+from models.user import User as uS
 classes = {
-	"BaseModel": B_S,
+	"BaseModel": B_S
+    ,"User": uS
 }
 class HBNBCommand(cmd_hbnb.Cmd):
     prompt = "(hbnb)"
@@ -28,7 +30,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
         if nedded_class not in classes:
             print("** class doesn't exist **")
             return
-        created = B_S()
+        created = classes[nedded_class]()
         created.save()
         print(created.id)
     def do_show(self, arg):
@@ -48,7 +50,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
             if s not in objects.keys():
                 print("** no instance found **")
                 return
-            tmp = B_S(**(objects[s]))
+            tmp = classes[args[0]](**(objects[s]))
             print(tmp.__str__())
     def do_destroy(self, arg):
         args = shlex.split(arg)
@@ -73,7 +75,8 @@ class HBNBCommand(cmd_hbnb.Cmd):
         if not arg:
             tmp = list()
             for key in objects:
-                tmp.append(B_S(**objects[key]).__str__())
+                a = key.split(".")
+                tmp.append(classes[a[0]](**objects[key]).__str__())
             print(tmp)
         else:
             if arg not in classes:
@@ -83,7 +86,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
             for key in objects:
                 a = key.split(".")
                 if a[0] == arg:
-                    tmp.append(B_S(**objects[key]).__str__())
+                    tmp.append(classes[a[0]](**objects[key]).__str__())
             if tmp:
                 print(tmp)
     def do_update(self,arg):
@@ -101,7 +104,6 @@ class HBNBCommand(cmd_hbnb.Cmd):
         objects = st.all()
         c_id = ".".join([args[0],args[1]])
         if objects.get(c_id) is not None:
-            print(objects.get(c_id))
             if lenght < 3:
                 print("** attribute name missing **")
                 return
@@ -110,12 +112,10 @@ class HBNBCommand(cmd_hbnb.Cmd):
                 return
             if args[3] in ["updated_at","created_at","id"]:
                 return
-            ob = B_S(**objects[c_id])
+            ob = classes[args[0]](**objects[c_id])
             setattr(ob,args[2],args[3])
             objects[c_id] = ob.to_dict()
             st.save()
-            print(objects.get(c_id))
-                
 if __name__ == "__main__":
     if stdin.isatty():
         HBNBCommand().cmdloop()
