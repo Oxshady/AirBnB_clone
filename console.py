@@ -34,9 +34,9 @@ class HBNBCommand(cmd_hbnb.Cmd):
     prompt = "(hbnb)"
     st.reload()
 
-    def do_EOF(self, line):
+    def do_quit(self, line):
         """
-        The `do_EOF` function returns `True` when called.
+        The `do_quit` function returns `True` when called.
 
         :param line: The `do_EOF` method you provided seems
         to be a part of a class or a script that
@@ -49,6 +49,8 @@ class HBNBCommand(cmd_hbnb.Cmd):
         print("(hbnb)")
         return True
 
+    do_EOF = do_quit
+
     def help_EOF(self):
         """
         The function `help_EOF` prints a message explaining
@@ -56,7 +58,6 @@ class HBNBCommand(cmd_hbnb.Cmd):
         """
         print("EOF command to exit the program")
 
-    do_quit = do_EOF
 
     def help_quit(self):
         """
