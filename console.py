@@ -62,7 +62,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
         :return: True
         """
         print()
-        return True
+        exit()
 
     def help_EOF(self):
         """
