@@ -267,10 +267,8 @@ class HBNBCommand(cmd_hbnb.Cmd):
             objects[c_id] = ob
             st.save()
 
-
-if __name__ == "__main__":
-    if stdin.isatty():
-        HBNBCommand().cmdloop()
-    else:
-        for command in stdin:
+if stdin.isatty():
+    HBNBCommand().cmdloop()
+else:
+    for command in stdin:
             HBNBCommand().onecmd(command.strip())
