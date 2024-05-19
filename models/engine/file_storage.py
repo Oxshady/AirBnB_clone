@@ -40,7 +40,7 @@ class FileStorage:
         key that combines the class name of the object and
         its id, and the value being the object
         """
-        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj.to_dict()
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
     def save(self):
         """
@@ -48,8 +48,9 @@ class FileStorage:
         of `self.__objects` to a file specified by
         `self.__file_path` in JSON format.
         """
-        with open(self.__file_path, "w") as wf:
-            json_dump(self.__objects, wf)
+        new = {key: obj.to_dict() for key, obj in self.__objects.items()}
+        with open(self.__file_path, "w") as f:
+            json_dump(new, f)
 
     def reload(self):
         """
@@ -64,8 +65,30 @@ class FileStorage:
         returns without performing any
         further actions.
         """
+        from models.base_model import BaseModel as b
+        from models.user import User as u
+        from models.amenity import Amenity as a
+        from models.city import City as c
+        from models.state import State as s
+        from models.review import Review as r
+        from models.place import Place as p
+
+        self.__classe = {
+            "BaseModel": b,
+            "User": u,
+            "Amenity": a,
+            "City": c,
+            "State": s,
+            "Review": r,
+            "Place": p,
+        }
+
         if file_Exit(self.__file_path):
-            with open(self.__file_path, "r") as rf:
-                self.__objects = json_load(rf)
+            with open(self.__file_path, "r") as f:
+                obj_dict = json_load(f)
+                for key, value in obj_dict.items():
+                    cl = value["__class__"]
+                    if cl in self.__classe:
+                        self.__objects[key] = self.__classe[cl](**value)
         else:
             return

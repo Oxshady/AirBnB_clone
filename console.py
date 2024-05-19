@@ -142,8 +142,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
             if s not in objects.keys():
                 print("** no instance found **")
                 return
-            tmp = classes[args[0]](**(objects[s]))
-            print(tmp.__str__())
+            print(objects[s].__str__())
 
     def do_destroy(self, arg):
         """
@@ -213,8 +212,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
         if not arg:
             tmp = list()
             for key in objects:
-                a = key.split(".")
-                tmp.append(classes[a[0]](**objects[key]).__str__())
+                tmp.append(objects[key].__str__())
             print(tmp)
         else:
             if arg not in classes:
@@ -222,9 +220,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
                 return
             tmp = list()
             for key in objects:
-                a = key.split(".")
-                if a[0] == arg:
-                    tmp.append(classes[a[0]](**objects[key]).__str__())
+                    tmp.append(objects[key].__str__())
             if tmp:
                 print(tmp)
 
@@ -266,9 +262,9 @@ class HBNBCommand(cmd_hbnb.Cmd):
                 return
             if args[3] in ["updated_at", "created_at", "id"]:
                 return
-            ob = classes[args[0]](**objects[c_id])
+            ob = objects[c_id]
             setattr(ob, args[2], args[3])
-            objects[c_id] = ob.to_dict()
+            objects[c_id] = ob
             st.save()
 
 
