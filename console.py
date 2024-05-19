@@ -49,7 +49,20 @@ class HBNBCommand(cmd_hbnb.Cmd):
         print("(hbnb)")
         return True
 
-    do_EOF = do_quit
+    def do_EOF(self, line):
+        """
+        The `do_EOF` function returns `True` when called.
+
+        :param line: The `do_EOF` method you provided seems
+        to be a part of a class or a script that
+        handles input. The `do_EOF` method is typically
+        used to handle the end-of-file signal,
+        indicating the end of input. In this case,
+        the method simply returns `True`
+        :return: True
+        """
+        print("(hbnb)")
+        return True
 
     def help_EOF(self):
         """
