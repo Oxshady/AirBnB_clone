@@ -7,6 +7,7 @@ from models.base_model import BaseModel
 from unittest import TestCase
 from datetime import datetime
 
+
 class TestBaseModel(TestCase):
     def setUp(self):
         """Set up for the tests"""
@@ -34,17 +35,19 @@ class TestBaseModel(TestCase):
     def test_to_dict_contains_correct_keys(self):
         """Test that to_dict contains the correct keys"""
         model_dict = self.model.to_dict()
-        expected_keys = ['id', 'created_at', 'updated_at', '__class__']
+        expected_keys = ["id", "created_at", "updated_at", "__class__"]
         for key in expected_keys:
             self.assertIn(key, model_dict)
 
     def test_to_dict_values(self):
         """Test that to_dict returns correct values"""
         model_dict = self.model.to_dict()
-        self.assertEqual(model_dict['__class__'], 'BaseModel')
-        self.assertEqual(model_dict['id'], self.model.id)
-        self.assertEqual(model_dict['created_at'], self.model.created_at.isoformat())
-        self.assertEqual(model_dict['updated_at'], self.model.updated_at.isoformat())
+        self.assertEqual(model_dict["__class__"], "BaseModel")
+        self.assertEqual(model_dict["id"], self.model.id)
+        self.assertEqual(model_dict["created_at"],
+                         self.model.created_at.isoformat())
+        self.assertEqual(model_dict["updated_at"],
+                         self.model.updated_at.isoformat())
 
     def test_str_method(self):
         """Test the __str__ method"""
@@ -57,9 +60,15 @@ class TestBaseModel(TestCase):
             "id": "123",
             "created_at": "2023-05-19T15:22:34.123456",
             "updated_at": "2023-05-19T15:22:34.123456",
-            "__class__": "BaseModel"
+            "__class__": "BaseModel",
         }
         model = BaseModel(**data)
         self.assertEqual(model.id, "123")
-        self.assertEqual(model.created_at, datetime.fromisoformat("2023-05-19T15:22:34.123456"))
-        self.assertEqual(model.updated_at, datetime.fromisoformat("2023-05-19T15:22:34.123456"))
+        self.assertEqual(
+            model.created_at,
+            datetime.fromisoformat("2023-05-19T15:22:34.123456")
+        )
+        self.assertEqual(
+            model.updated_at,
+            datetime.fromisoformat("2023-05-19T15:22:34.123456")
+        )

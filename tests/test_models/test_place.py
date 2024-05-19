@@ -2,7 +2,6 @@ import unittest
 from models.place import Place
 
 
-
 class TestPlace(unittest.TestCase):
     """Test cases for the Place class."""
 
