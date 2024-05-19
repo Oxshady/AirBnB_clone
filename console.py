@@ -226,6 +226,26 @@ class HBNBCommand(cmd_hbnb.Cmd):
             if tmp:
                 print(tmp)
 
+    def do_count(self, arg):
+        """
+        This function retrieves the number of objects
+        """
+        objects = st.all()
+        tmp = 0
+        if not arg:
+            for key in objects.keys():
+                tmp += 1
+            print(tmp)
+        else:
+            if arg not in classes:
+                print("** class doesn't exist **")
+                return
+            for key in objects:
+                k = key.split(".")
+                if k[0] == arg:
+                    tmp += 1
+            print(tmp)
+
     def default(self, line: str) -> None:
         """
         implement dynamic commands
@@ -234,6 +254,8 @@ class HBNBCommand(cmd_hbnb.Cmd):
         if tmp[0] in classes:
             if tmp[1] == "all()":
                 self.do_all(tmp[0])
+            if tmp[1] == "count()":
+                self.do_count(tmp[0])
 
     def do_update(self, arg):
         """
