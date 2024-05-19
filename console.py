@@ -61,7 +61,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
         the method simply returns `True`
         :return: True
         """
-        print(self.prompt)
+        print()
         return True
 
     def help_EOF(self):
