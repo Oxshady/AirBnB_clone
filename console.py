@@ -220,9 +220,20 @@ class HBNBCommand(cmd_hbnb.Cmd):
                 return
             tmp = list()
             for key in objects:
+                k = key.split(".")
+                if k[0] == arg:
                     tmp.append(objects[key].__str__())
             if tmp:
                 print(tmp)
+
+    def default(self, line: str) -> None:
+        """
+        implement dynamic commands
+        """
+        tmp = line.split(".")
+        if tmp[0] in classes:
+            if tmp[1] == "all()":
+                self.do_all(tmp[0])
 
     def do_update(self, arg):
         """
@@ -267,8 +278,9 @@ class HBNBCommand(cmd_hbnb.Cmd):
             objects[c_id] = ob
             st.save()
 
+
 if stdin.isatty():
     HBNBCommand().cmdloop()
 else:
     for command in stdin:
-            HBNBCommand().onecmd(command.strip())
+        HBNBCommand().onecmd(command.strip())
