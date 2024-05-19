@@ -37,11 +37,6 @@ class TestFileStorage(unittest.TestCase):
         self.storage.save()
         mock_file.assert_called_once_with("file.json", "w")
 
-    @patch(
-        "builtins.open",
-        new_callable=mock_open,
-        read_data='{"BaseModel.1234": {"__class__": "BaseModel", "id": "1234", "created_at": "2023-05-19T15:22:34.123456", "updated_at": "2023-05-19T15:22:34.123456"}}',
-    )
     @patch("os.path.exists", return_value=True)
     def test_reload_method(self, mock_exists, mock_file):
         """Test the reload method"""
