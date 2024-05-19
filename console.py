@@ -83,7 +83,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
         The function "emptyline" does not contain
         any code and simply passes.
         """
-        pass
+        return
 
     def do_create(self, nedded_class):
         """
