@@ -21,7 +21,10 @@ Some available commands include:
 - `count`
 
 These commands enable various actions such as creating, retrieving, updating, and deleting objects.
-
+## Simple UI for the HBNB
+![AirBnB Frontend simple](simple.png)
+i also created a responsive design
+![AirBnB Frontend responsive](responisve.png)
 ## Getting Started
 
 Follow these instructions to set up a local copy of the project for development and testing purposes on a Linux distro.
