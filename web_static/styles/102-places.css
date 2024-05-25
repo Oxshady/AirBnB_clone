@@ -271,5 +271,7 @@ header .logo {
 	.price_by_night {
 		position: relative;
 		float: right;
+		top:-47px;
+		right: 5px;
 	}
 }
