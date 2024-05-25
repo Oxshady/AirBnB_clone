@@ -23,7 +23,7 @@ Some available commands include:
 These commands enable various actions such as creating, retrieving, updating, and deleting objects.
 ## Simple UI for the HBNB
 ![AirBnB Frontend simple](simple.png)
-i also created a responsive design
+## responsive design
 ![AirBnB Frontend responsive](responisve.png)
 ## Getting Started
 
