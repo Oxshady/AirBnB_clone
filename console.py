@@ -279,7 +279,7 @@ class HBNBCommand(cmd_hbnb.Cmd):
             print("** class name missing **")
             return
         if args[0] not in classes:
-            print("class dosen't exist")
+            print("** class doesn't exist **")
             return
         if lenght < 2:
             print("** instance id missing **")
@@ -299,6 +299,9 @@ class HBNBCommand(cmd_hbnb.Cmd):
             setattr(ob, args[2], args[3])
             objects[c_id] = ob
             st.save()
+        else:
+            print("** no instance found **")
+            
 
 
 if stdin.isatty():
