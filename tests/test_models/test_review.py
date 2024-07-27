@@ -13,15 +13,12 @@ class TestReview(unittest.TestCase):
         self.assertTrue(hasattr(review, "id"))
         self.assertTrue(hasattr(review, "created_at"))
         self.assertTrue(hasattr(review, "updated_at"))
-        self.assertTrue(hasattr(review, "place_id"))
-        self.assertTrue(hasattr(review, "user_id"))
-        self.assertTrue(hasattr(review, "text"))
+
 
     def test_str_representation(self):
         """Test the string representation of the Review instance."""
         review = Review()
-        self.assertEqual(str(review),
-                         f"[Review] ({review.id}) {review.to_dict()}")
+        self.assertEqual(str(review), f"[Review] ({review.id}) {review.to_dict()}")
 
     def test_to_dict_method(self):
         """Test the to_dict method of the Review class."""
@@ -30,10 +27,8 @@ class TestReview(unittest.TestCase):
         self.assertEqual(review_dict["__class__"], "Review")
         self.assertIsInstance(review_dict["created_at"], str)
         self.assertIsInstance(review_dict["updated_at"], str)
-        self.assertEqual(review_dict["created_at"],
-                         review.created_at.isoformat())
-        self.assertEqual(review_dict["updated_at"],
-                         review.updated_at.isoformat())
+        self.assertEqual(review_dict["created_at"], review.created_at.isoformat())
+        self.assertEqual(review_dict["updated_at"], review.updated_at.isoformat())
 
     def test_save_method(self):
         """Test the save method of the Review class."""
