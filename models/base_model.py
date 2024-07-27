@@ -37,6 +37,8 @@ class BaseModel:
                 if key == "created_at" or key == "updated_at":
                     setattr(self, key,
                             dt.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                elif key == "id":
+                    setattr(self, key, uuid.UUID(value))
                 elif key != "__class__":
                     setattr(self, key, value)
         else:
